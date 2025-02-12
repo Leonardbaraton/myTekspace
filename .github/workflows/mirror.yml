@@ -1,0 +1,20 @@
+name: Pain au chocolat
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Push to private repository
+        run: |
+          git remote add private https://github.com/EpitechPromo2028/B-OOP-400-NAN-4-1-tekspice-leonard.baraton.git
+          git push private main # --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
