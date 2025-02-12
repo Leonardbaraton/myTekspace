@@ -1,9 +1,14 @@
-name: Pain au chocolat
+name: Mirror to Private Repo
 
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: write
+  actions: read
+  issues: read
 
 jobs:
   mirror:
@@ -14,7 +19,5 @@ jobs:
 
       - name: Push to private repository
         run: |
-          git remote add private https://github.com/EpitechPromo2028/B-OOP-400-NAN-4-1-tekspice-leonard.baraton.git
-          git push private main # --force
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git remote add private https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/EpitechPromo2028/B-OOP-400-NAN-4-1-tekspice-leonard.baraton.git
+          git push private main
